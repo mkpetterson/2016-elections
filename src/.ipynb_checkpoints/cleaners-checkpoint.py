@@ -22,7 +22,7 @@ def get_percentage(df):
         new_name = colname + '_pct'
         df[new_name] = 100*df[colname]/total_votes12
         
-    df['cvap_pct'] = 100*total_votes16/df['cvap']
+    df['cvap_pct12'] = 100*total_votes12/df['cvap']
     
     return None    
 

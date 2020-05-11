@@ -6,12 +6,12 @@
 
 ## Table of Contents
 
-- <a href="https://github.com/mkpetterson/2016_elections#intro">Introduction</a>  
-- <a href="https://github.com/mkpetterson/2016_election#data-preparation-and-exploratory-data-analysis">Data Preparation and Exploratory Data Analysis</a> 
-- <a href="https://github.com/mkpetterson/2016_election#models-investigated">Models Investigated</a>  
-- <a href="https://github.com/mkpetterson/2016_election#prediction-results">Prediction Results</a> 
-- <a href="https://github.com/mkpetterson/2016_election#summary-and-key-findings">Summary and Key Findings</a>
-- - <a href="https://github.com/mkpetterson/2016_election#running-the-code">Running the Code</a>
+- <a href="https://github.com/mkpetterson/2016_elections#introduction">Introduction</a>  
+- <a href="https://github.com/mkpetterson/2016_elections#data-preparation-and-exploratory-data-analysis">Data Preparation and Exploratory Data Analysis</a> 
+- <a href="https://github.com/mkpetterson/2016_elections#models-investigated">Models Investigated</a>  
+- <a href="https://github.com/mkpetterson/2016_elections#prediction-results">Prediction Results</a> 
+- <a href="https://github.com/mkpetterson/2016_elections#summary-and-key-findings">Summary and Key Findings</a>
+- - <a href="https://github.com/mkpetterson/2016_elections#running-the-code">Running the Code</a>
 
 
 
@@ -25,22 +25,23 @@
 
 The dataset required some cleaning and manipulating prior to building and evaluating the models. First, non-relavent columns and null rows were removed from the dataset, followed by creation of new features and one hot encoding (OHE) of some categorical variables. 
 
-- 12 columns were dropped, which contained voting results in 2016 for the house, senate, and governor races. This information wouldn't have been available prior to the 2016 election. 
+- 14 columns were dropped, which contained voting results in 2016 for the house, senate, and governor races. This information wouldn't have been available prior to the 2016 election and shouldn't be used as features in the model.
+- 3 counties with missing demographic data were removed from the dataset.
 - Additionally, the 2014 results for govenor were excluded. While this is expected to be an important feature, it was missing in 31% of the counties. Counties without the data couldn't be included in the results and the missing data can't be filled in with the mean. The best solution would be to create two different models: one with the data and one without. 
-- 3 counties were missing demographic information. They were excluded as well.
-
-- 
 
 
-<img alt="Data" src='img/data_head.png'>
+- Vote count results for the 2016 and 2012 elections were turned into percentages of the total votes for each county.
+- A column was added for the percentage of eligible voters who voted in the 2012 election. 
+- The 'rural_cc' column, which is a categorical variable describing the county as rural, metro, or urban (metro-adjacent or non-metro-adjacent), was replaced with 4 boolean columns. 
 
-We made the following changes to both the train and test data:
+Snapshot of the original dataset:
+<img alt="Data" src='images/head.png'>
+
+The cleaned up dataset:
+<img alt="cleaned" src='images/cleaned_data.png'>
 
 
-
-A screenshot of our cleaned dataset is below
-
-<img alt="Clean Data" src='img/data_clean_head.png'>
+While state, county, and fips will not be used in the regression or classification model, they will be needed for some initial exploratory data analysis and will be dropped at a later time. 
 
 
 ### Exploratory Data Analysis
