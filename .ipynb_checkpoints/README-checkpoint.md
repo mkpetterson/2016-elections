@@ -6,12 +6,12 @@
 
 ## Table of Contents
 
-- <a href="https://github.com/mkpetterson/ride-share-churn#intro">Introduction</a>  
-- <a href="https://github.com/mkpetterson/ride-share-churn#exploratory-data-analysis-and-data-preparation">Data Preparation and Exploratory Data Analysis</a> 
-- <a href="https://github.com/mkpetterson/ride-share-churn#models-investigated">Models Investigated</a>  
-- <a href="https://github.com/mkpetterson/ride-share-churn#comparison-of-models">Comparison of Models</a> 
-- <a href="https://github.com/mkpetterson/ride-share-churn#summary-and-key-findings">Summary and Key Findings</a>
-- Running the Code and github breakdown
+- <a href="https://github.com/mkpetterson/2016_elections#intro">Introduction</a>  
+- <a href="https://github.com/mkpetterson/2016_election#data-preparation-and-exploratory-data-analysis">Data Preparation and Exploratory Data Analysis</a> 
+- <a href="https://github.com/mkpetterson/2016_election#models-investigated">Models Investigated</a>  
+- <a href="https://github.com/mkpetterson/2016_election#prediction-results">Prediction Results</a> 
+- <a href="https://github.com/mkpetterson/2016_election#summary-and-key-findings">Summary and Key Findings</a>
+- - <a href="https://github.com/mkpetterson/2016_election#running-the-code">Running the Code</a>
 
 
 
