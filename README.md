@@ -10,8 +10,8 @@
 - <a href="https://github.com/mkpetterson/2016_elections#data-preparation-and-exploratory-data-analysis">Data Preparation and Exploratory Data Analysis</a> 
 - <a href="https://github.com/mkpetterson/2016_elections#models-investigated">Models Investigated</a>  
 - <a href="https://github.com/mkpetterson/2016_elections#prediction-results">Prediction Results</a> 
-- <a href="https://github.com/mkpetterson/2016_elections#summary-and-key-findings">Summary and Key Findings</a>
-- - <a href="https://github.com/mkpetterson/2016_elections#running-the-code">Running the Code</a>
+- <a href="https://github.com/mkpetterson/2016_elections#conclusion">Conclusion</a>
+- <a href="https://github.com/mkpetterson/2016_elections#running-the-code">Running the Code</a>
 
 
 
@@ -59,30 +59,10 @@ Working on the training set only, we did some EDA to look at the distribution of
 
 
 
-## Comparison of Models
-
-The ROC curves for each model were plotted on top of each other, showing that each model performs similarly to the others. Ultimately it was decided that the best model to select for testing was Gradient Boosting Classifier. The final results are shown below. 
-
-<details>
-    <summary>ROC Curve and Confusion Matrix</summary>
-
-<p align='middle'>
-    <td><img src='./img/roc_overlay.png' align='center' width='400'></td>
-</p>
+## Prediction Results
 
 
-<br>
-<br>
-<p align='middle'>
-    <td><img src='./img/confusion_matrix_gbc_testdata.png' align='center' width='500'></td>
-</p>
-<p align='middle'>
-    <b>Accuracy:</b> 78% | <b>Precision:</b> 81% | <b>Recall:</b> 86%
-</p>
 
-</details>
+## Conclusion
 
-## Summary and Key Findings
-
-
-### Recommendations
+## Running the Code
