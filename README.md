@@ -33,6 +33,8 @@ The dataset required some cleaning and manipulating prior to building and evalua
 - Vote count results for the 2016 and 2012 elections were turned into percentages of the total votes for each county.
 - A column was added for the percentage of eligible voters who voted in the 2012 election. 
 - The 'rural_cc' column, which is a categorical variable describing the county as rural, metro, or urban (metro-adjacent or non-metro-adjacent), was replaced with 4 boolean columns. 
+- Further EDA showed that a few columns were highly correlated and thus should be removed for linear regression. Non-white percent, percent white who have less than a high school education, and the percent white who have less than a college education were all removed as they were redundant with the racially neutral columns with similar metrics. 
+
 
 Snapshot of the original dataset:
 <img alt="Data" src='images/head.png'>
