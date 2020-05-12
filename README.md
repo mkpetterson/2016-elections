@@ -48,14 +48,33 @@ While state, county, and fips will not be used in the regression or classificati
 
 ### Exploratory Data Analysis
 
-Working on the training set only, we did some EDA to look at the distribution of the features. Below are several different plots highlighting correlations and distributions in the data. 
+Working on the training set only, we did some EDA to look at the distribution of the features. Below are several different plots highlighting correlations and distributions in the data. First we looked at choropleth maps of the counties to get a good visual of a few demographics. Note the 3 counties in Arizona who went to a 3rd party candidate. 
+
+This first choropleth plot was made by looking at the candiate in each county with the highest number of votes.
+<img alt='choropleth1' src='images/winner_2016.png'>
+
+<img alt='choropleth2' src='images/median_income.png'>
+
+
+Below are a few other plots looking more closely at demographic data. Most are broken down into counties that voted majoriy-Trump or majority-Clinton. These plots highlight some interesting trends, namely that there isn't a large different along educational or income lines, with the exception that highly educated counties (>50% of the population has a college degree) voted almost exclusively for Clinton.  
+
+The correlations plot, aside from showing features that are highly correlated and redundant, also shows some strong correlations with the presidential candidates.  
+
 
 <details>
     <summary>Correlation Heatmap</summary>
-<img alt="Heatmap" src='img/corr_heatmap.png' style='width: 600px;'>
+<img alt="Heatmap" src='images/corr_heatmap2.png' width='600'>
 </details>
 
+<details>
+    <summary>Income and Unemployment Breakdown</summary>
+<img alt="income" src='images/income_unemploy.png' width='600'>
+</details>
 
+<details>
+    <summary>Education</summary>
+<img alt="edu" src='images/education.png' width='600'>
+</details>
 
 ## Models Investigated
 
