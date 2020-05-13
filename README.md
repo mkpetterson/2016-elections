@@ -17,6 +17,12 @@
 
 ## Introduction
 
+The 2016 presidential election was a divisive, highly-charged event that added new urgency to the same questions the United States ponders every 4 years: How could forecasting models be so wrong in predicting the winner? Should we continue using an outdated electoral college system in which the winner of the popular vote loses the election? Do voters vote in their own interest, or instead stick to the same party despite changes in party platform?
+
+Predicting the winner of the election is no small task. While certian demographics are both highly correlated with each other and highly correlated to political parties (see <a href='https://en.wikipedia.org/wiki/Multilevel_model'>multilevel modeling</a>), many other factors come into play: major event occuring in the months preceeding the election, geographical regions might favor a local candidate regardless of her/his political affiliation, the strength of the economy, etc. It can be difficult to capture all of these in a single model. 
+
+This project is an attempt at predicting the presidential election using only county demographics. While this model won't account for any of the complex factor listed above, it can still provide decent results and more complexity can be added to the resultant model. 
+
 
 
 ## Data Preparation and Exploratory Data Analysis
