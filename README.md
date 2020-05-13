@@ -59,6 +59,7 @@ Working on the training set only, we did some EDA to look at the distribution of
 This first choropleth plot was made by looking at the candiate in each county with the highest number of votes.
 <img alt='choropleth1' src='images/winner_2016.png'>
 
+<center><b>Median Income</b></center>
 <img alt='choropleth2' src='images/median_income.png'>
 
 
