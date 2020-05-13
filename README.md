@@ -19,10 +19,9 @@
 
 The 2016 presidential election was a divisive, highly-charged event that added new urgency to the same questions the United States ponders every 4 years: How could forecasting models be so wrong in predicting the winner? Should we continue using an outdated electoral college system in which the winner of the popular vote loses the election? Do voters vote in their own interest, or instead stick to the same party despite changes in party platform?
 
-Predicting the winner of the election is no small task. While certian demographics are both highly correlated with each other and highly correlated to political parties (see <a href='https://en.wikipedia.org/wiki/Multilevel_model'>multilevel modeling</a>), many other factors come into play: major event occuring in the months preceeding the election, geographical regions might favor a local candidate regardless of her/his political affiliation, the strength of the economy, etc. It can be difficult to capture all of these in a single model. 
+Predicting the winner of the election is no small task. While certian demographics are both highly correlated with each other and highly correlated to political parties (see <a href='https://en.wikipedia.org/wiki/Multilevel_model'>multilevel modeling</a>), many other factors come into play: major event occuring in the months preceeding the election, geographical regions might favor a local candidate regardless of her/his political affiliation, the strength of the economy, and even faithless electors who cast votes outside of who they are pledged to. It can be difficult to capture all of these in a single model. 
 
 This project is an attempt at predicting the presidential election using only county demographics. While this model won't account for any of the complex factor listed above, it can still provide decent results and more complexity can be added to the resultant model. 
-
 
 
 ## Data Preparation and Exploratory Data Analysis
@@ -56,10 +55,12 @@ While state, county, and fips will not be used in the regression or classificati
 
 Working on the training set only, we did some EDA to look at the distribution of the features. Below are several different plots highlighting correlations and distributions in the data. First we looked at choropleth maps of the counties to get a good visual of a few demographics. Note the 3 counties in Arizona who went to a 3rd party candidate. 
 
-This first choropleth plot was made by looking at the candiate in each county with the highest number of votes.
+
+
+<h5><b>Candidate with the most votes</b></h5>
 <img alt='choropleth1' src='images/winner_2016.png'>
 
-<center><b>Median Income</b></center>
+<h5><b>Median Income</b></h5>
 <img alt='choropleth2' src='images/median_income.png'>
 
 
