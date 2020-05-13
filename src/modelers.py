@@ -49,3 +49,31 @@ def lin_regression(X_train, X_test, y_train, y_test):
     return rmse, y_hat, model.coef_
 
 
+def kfold_scores(X_train, y_train, nsplits):
+    """ Kfold for linear regression
+    
+    Inputs:
+    X_train 
+    y_train PANDAS
+    
+    Returns:
+    rmse per split
+    y_hats per split
+    coeffs per split
+    """
+    y_train = y_train.values
+
+    kf = KFold(n_splits=nsplits, shuffle=True)  # almost always use shuffle=True
+    fold_scores = []
+    coeffs = []
+
+    for train, test in kf.split(X_train):
+        rmse, y_hat, coeff = lin_regression(X_train[train], 
+                                              X_train[test], 
+                                              y_train[train], 
+                                              y_train[test])
+        fold_scores.append(rmse)
+        coeffs.append(coeff)
+        
+    return np.array(fold_scores), np.array(coeffs)
+    
