@@ -8,7 +8,7 @@
 
 - <a href="https://github.com/mkpetterson/2016_elections#introduction">Introduction</a>  
 - <a href="https://github.com/mkpetterson/2016_elections#data-preparation-and-exploratory-data-analysis">Data Preparation and Exploratory Data Analysis</a> 
-- <a href="https://github.com/mkpetterson/2016_elections#models-investigated">Models Investigated</a>  
+- <a href="https://github.com/mkpetterson/2016_elections#modeling">Modeling</a>  
 - <a href="https://github.com/mkpetterson/2016_elections#prediction-results">Prediction Results</a> 
 - <a href="https://github.com/mkpetterson/2016_elections#conclusion">Conclusion</a>
 - <a href="https://github.com/mkpetterson/2016_elections#running-the-code">Running the Code</a>
@@ -84,7 +84,24 @@ The correlations plot, aside from showing features that are highly correlated an
 <img alt="edu" src='images/education.png' width='600'>
 </details>
 
-## Models Investigated
+## Modeling: Linear Regression
+
+Linear regression was chosen for the initial model. Since we are looking at county-level data and not state-level data, it makes more sense to do a linear regression to predict the percentage of votes each candidate receives, then multiply that by the voting population to get a total vote count for each county. All the counties in a given state are tallied and the majority winner wins the state. The process flow is as follows:
+
+
+- Removal of third party candidate
+- Standardization of all dataset features
+- KFold for iterative, randomized train/test splits 
+- Linear Regression for prediction of the percentage of a county who voted for Trump
+- Error analysis using mean squared error
+- Extraction of beta parameters and p-values to find most important/signifiant features
+- Summing predicted votes for each state and assigning electoral votes to the winner
+
+
+<b>A note on third party candidates</b>
+Removal of third party option from the regression model was done. Sigificant third party votes are often not predicted by information in the demographics table, but rather from other characteristics that can't be accounted for in this linear regression. We are assuming that a third party candidate will evently pull votes off the republican and democratic candidates, nullifying the overall affect. Thus, the prediction model will only predict for the percentage of vote for Trump and assume Clinton is 100-Trump. 
+
+
 
 
 
