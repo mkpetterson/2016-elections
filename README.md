@@ -11,8 +11,7 @@
 - <a href="https://github.com/mkpetterson/2016_elections#modeling">Modeling</a>  
 - <a href="https://github.com/mkpetterson/2016_elections#prediction-results">Prediction Results</a> 
 - <a href="https://github.com/mkpetterson/2016_elections#conclusion">Conclusion</a>
-- <a href="https://github.com/mkpetterson/2016_elections#running-the-code">Running the Code</a>
-
+- <a href="https://github.com/mkpetterson/2016_elections#notes">Notes</a>
 
 
 ## Introduction
@@ -22,6 +21,8 @@ The 2016 presidential election was a divisive, highly-charged event that added n
 Predicting the winner of the election is no small task. While certian demographics are both highly correlated with each other and highly correlated to political parties (see <a href='https://en.wikipedia.org/wiki/Multilevel_model'>multilevel modeling</a>), many other factors come into play: major event occuring in the months preceeding the election, geographical regions might favor a local candidate regardless of her/his political affiliation, the strength of the economy, and even faithless electors who cast votes outside of who they are pledged to. It can be difficult to capture all of these in a single model. 
 
 This project is an attempt at predicting the presidential election using only county demographics. While this model won't account for any of the complex factor listed above, it can still provide decent results and more complexity can be added to the resultant model. 
+
+<hr>
 
 
 ## Data Preparation and Exploratory Data Analysis
@@ -39,6 +40,7 @@ The dataset required some cleaning and manipulating prior to building and evalua
 - A column was added for the percentage of eligible voters who voted in the 2012 election. 
 - The 'rural_cc' column, which is a categorical variable describing the county as rural, metro, or urban (metro-adjacent or non-metro-adjacent), was replaced with 4 boolean columns. 
 - Further EDA showed that a few columns were highly correlated and thus should be removed for linear regression. Non-white percent, percent white who have less than a high school education, and the percent white who have less than a college education were all removed as they were redundant with the racially neutral columns with similar metrics. 
+- Similarly, Hispanic percent and black percent were removed as they are highly correlated with white percent. 
 
 
 Snapshot of the original dataset:
@@ -75,40 +77,70 @@ The correlations plot, aside from showing features that are highly correlated an
 </details>
 
 <details>
-    <summary>Income and Unemployment Breakdown</summary>
+    <summary>Education, Income, and Unemployment Breakdown</summary>
 <img alt="income" src='images/income_unemploy.png' width='600'>
 </details>
 
 <details>
-    <summary>Education</summary>
-<img alt="edu" src='images/education.png' width='600'>
+    <summary>Previous Election Results and Misc Demographics</summary>
+<img alt="edu" src='images/prev_election.png' width='600'>
 </details>
+
+<hr>
+
 
 ## Modeling: Linear Regression
 
 Linear regression was chosen for the initial model. Since we are looking at county-level data and not state-level data, it makes more sense to do a linear regression to predict the percentage of votes each candidate receives, then multiply that by the voting population to get a total vote count for each county. All the counties in a given state are tallied and the majority winner wins the state. The process flow is as follows:
 
 
-- Removal of third party candidate
-- Standardization of all dataset features
+- Removal of third party candidate <a href="https://www.google.com"><sup>1</sup></a>
+- Normalization of all dataset features <a href="https://www.google.com"><sup>2</sup></a>
 - KFold for iterative, randomized train/test splits 
 - Linear Regression for prediction of the percentage of a county who voted for Trump
-- Error analysis using mean squared error
+- Error analysis using mean squared error and R2
 - Extraction of beta parameters and p-values to find most important/signifiant features
-- Summing predicted votes for each state and assigning electoral votes to the winner
+- Summing predicted votes for each county and tallying the difference in votes for each candidate
 
 
-<b>A note on third party candidates</b>
-Removal of third party option from the regression model was done. Sigificant third party votes are often not predicted by information in the demographics table, but rather from other characteristics that can't be accounted for in this linear regression. We are assuming that a third party candidate will evently pull votes off the republican and democratic candidates, nullifying the overall affect. Thus, the prediction model will only predict for the percentage of vote for Trump and assume Clinton is 100-Trump. 
+A snippet of code: 
+
+<img alt='code' src='images/code.png' width='400'>
 
 
-KFold RMSE range from 3.06 - 3.68, with an average value of 3.36. 
 
+<img alt="pvalues" src='images/pvalues.png' width='400'><img alt='beta' src='images/betas.png' width='400'>
+
+ 
+ 
+
+<b>Model Performance</b><br>
+- KFold RMSE range from 3.06 - 3.68, with an average value of 3.36. 
+- KFold R2 values ranged from 0.94 - 0.97, with an average value of 0.95.
+- The p-value of OLS model was 0.000, indicating that the linear regression model was able to accurately predict the percentage of votes Trump would receive in a given county based solely off demogrpahics and previous election results. 
+
+     
+    
+<hr>
 
 ## Prediction Results
+
+Despite the simplicity of the model and the fact that some of the features were correlated, the predictions were fairly accurate. Both the RMSE and R2 metrics were well within acceptable ranges. Of the 778 counties in the test set, 97% of them were accurately predicted to have eith Trump or Clinton as the forerunner. A choropleth map of the counties in the testing set is shown below, with blue representing accurate predictions, while yello represents counties with a different predicted forerunner. 
+
+<img alt='flipped' src='images/flipped.png'>
+
 
 
 
 ## Conclusion
 
-## Running the Code
+
+## Notes
+
+<b>Footnotes</b>
+
+1. Removal of third party option from the regression model was done. Sigificant third party votes are often not predicted by information in the demographics table, but rather from other characteristics that can't be accounted for in this linear regression. We are assuming that a third party candidate will evently pull votes off the republican and democratic candidates, nullifying the overall affect. Thus, the prediction model will only predict for the percentage of vote for Trump and assume Clinton is 100-Trump. 
+
+2. Typically standardization, which both centers and scale each feature to have a mean of 0 and standard deviation of 1, is done on all features prior to regression analysis. In this particular case, standardization gave different p-values for the features than normalization or no scaling. This is thought to be due to the fact that this dataset partially violates the requirement for independence between all the features, making the p-values of each feature vary based on the chosen pre-processing method. One way to avoid this would be with multilevel modeling, but in this case it was decided to use normalization, and not standardization, on all features prior to training the regression model.  
+    
+<b>Sources</b>
