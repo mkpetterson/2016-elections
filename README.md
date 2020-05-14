@@ -8,7 +8,7 @@
 
 - <a href="https://github.com/mkpetterson/2016_elections#introduction">Introduction</a>  
 - <a href="https://github.com/mkpetterson/2016_elections#data-preparation-and-exploratory-data-analysis">Data Preparation and Exploratory Data Analysis</a> 
-- <a href="https://github.com/mkpetterson/2016_elections#modeling">Modeling</a>  
+- <a href="https://github.com/mkpetterson/2016_elections#modeling-linear-regression">Modeling</a>  
 - <a href="https://github.com/mkpetterson/2016_elections#prediction-results">Prediction Results</a> 
 - <a href="https://github.com/mkpetterson/2016_elections#conclusion">Conclusion</a>
 - <a href="https://github.com/mkpetterson/2016_elections#notes">Notes</a>
@@ -68,7 +68,7 @@ Working on the training set only, we did some EDA to look at the distribution of
 
 Below are a few other plots looking more closely at demographic data. Most are broken down into counties that voted majoriy-Trump or majority-Clinton. These plots highlight some interesting trends, namely that there isn't a large different along educational or income lines, with the exception that highly educated counties (>50% of the population has a college degree) voted almost exclusively for Clinton. One of the largest predictors appears to be whether or not the county previously voted for Romney or Obama.
 
-The correlations plot, aside from showing features that are highly correlated and redundant, also shows some strong correlations with the presidential candidates.  
+The correlations plot, aside from showing features that are highly correlated and redundant, proved useful in determining which features are highly dependent and thus need to be removed prior to running the linear regression model.
 
 
 <details>
@@ -127,7 +127,7 @@ Feature engineering was investigated and found to be unnecessary due to the high
 
 ## Prediction Results
 
-Of the 778 counties in the test set, 97% of them were accurately predicted to have either Trump or Clinton as the forerunner. A choropleth map of the counties in the testing set is shown below, with blue representing accurate predictions, while yello represents counties with a different predicted forerunner. 
+Of the 778 counties in the test set, 97% of them were accurately predicted to have either Trump or Clinton as the forerunner. A choropleth map of the counties in the testing set is shown below, with blue representing accurate predictions, while yellow represents counties with a different predicted forerunner. 
 
 <img alt='flipped' src='images/flipped.png'>
 
@@ -148,4 +148,6 @@ Updated demographic information could be fed into the same model to accurately p
 
 2. Typically standardization, which both centers and scale each feature to have a mean of 0 and standard deviation of 1, is done on all features prior to regression analysis. In this particular case, standardization gave different p-values for the features than normalization or no scaling. This is thought to be due to the fact that this dataset partially violates the requirement for independence between all the features, making the p-values of each feature vary based on the chosen pre-processing method. One way to avoid this would be with multilevel modeling, but in this case it was decided to use normalization, and not standardization, on all features prior to training the regression model.  
     
-<b>Sources</b>
+<b>Sources</b><br>
+County demographic data taken from the MIT Election Lab <a href="https://electionlab.mit.edu/data">(source)</a><br>
+Geojson data for choropleth maps taken from <a href='https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json'>here</a>
