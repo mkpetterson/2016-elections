@@ -90,6 +90,7 @@ def kfold_scores(X_train, y_train, nsplits):
     r_sq_errors = []
     coeffs = []
 
+    # Loop through kfold splits
     for train, test in kf.split(X_train):
         rmse, r_sq, y_hat, coeff = lin_regression(X_train[train], 
                                               X_train[test], 
@@ -97,8 +98,7 @@ def kfold_scores(X_train, y_train, nsplits):
                                               y_train[test])
         rmses.append(rmse)
         r_sq_errors.append(r_sq)
-        coeffs.append(coeff)
-        
+        coeffs.append(coeff)        
         
     return np.array(rmses), np.array(r_sq_errors), np.array(coeffs)
     

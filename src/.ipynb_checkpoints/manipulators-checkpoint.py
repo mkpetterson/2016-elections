@@ -21,7 +21,7 @@ def merge_df(pop, predict):
 
 
 def calculate_votes(df):
-    """ Calculate the votes for each candidate given total_votes and percentage
+    """ Calculate the votes for each candidate given total_votes and percentage each candidate received
     
     Inputs
     dataframe
