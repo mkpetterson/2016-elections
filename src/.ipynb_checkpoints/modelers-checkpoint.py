@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
@@ -66,8 +66,9 @@ def lin_regression(X_train, X_test, y_train, y_test):
     
     y_hat = model.predict(X_test)
     rmse = np.sqrt(mean_squared_error(y_test, y_hat))
+    r_sq = r2_score(y_test, y_hat)
     
-    return rmse, y_hat, model.coef_
+    return rmse, r_sq, y_hat, model.coef_
 
 
 def kfold_scores(X_train, y_train, nsplits):
@@ -85,16 +86,19 @@ def kfold_scores(X_train, y_train, nsplits):
     y_train = y_train.values
 
     kf = KFold(n_splits=nsplits, shuffle=True)  # almost always use shuffle=True
-    fold_scores = []
+    rmses = []
+    r_sq_errors = []
     coeffs = []
 
     for train, test in kf.split(X_train):
-        rmse, y_hat, coeff = lin_regression(X_train[train], 
+        rmse, r_sq, y_hat, coeff = lin_regression(X_train[train], 
                                               X_train[test], 
                                               y_train[train], 
                                               y_train[test])
-        fold_scores.append(rmse)
+        rmses.append(rmse)
+        r_sq_errors.append(r_sq)
         coeffs.append(coeff)
         
-    return np.array(fold_scores), np.array(coeffs)
+        
+    return np.array(rmses), np.array(r_sq_errors), np.array(coeffs)
     
