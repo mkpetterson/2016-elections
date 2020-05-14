@@ -5,7 +5,7 @@ def fix_fips(df):
     """ Changes 4 digit fips to 5 digit fips"""
     
     col = 'fips'
-    data[col] = data[col].apply(lambda x: '0'+x if len(x)==4 else x)
+    df[col] = df[col].apply(lambda x: '0'+str(x) if len(str(x))==4 else str(x))
     return None
 
 

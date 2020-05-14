@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 
 def get_percentage(df):
@@ -40,3 +41,33 @@ def ohe_rural(df):
     df['urban_not_metroadj'] = df['ruralurban_cc'].apply(lambda x: 1 if (x==5) or (x==7) else 0)
     
     return None
+
+
+
+def find_winner(df, col1, col2, new_col):
+    """ Finds winner when comparing votes/numbers from col1 and col 2
+    
+    Inputs:
+    dataframe
+    col1, col2, new_col are strings
+    
+    Returns:
+    dataframe
+    """
+    
+    # Get candidate names
+    if 'clinton' in col2:
+        label2 = 'Clinton'
+        label1 = 'Trump'
+    elif 'trump' in col2:
+        label2 = 'Trump'
+        label1 = 'Clinton'
+    else:
+        return 'Check names'
+    
+    df[new_col] = pd.Series(np.zeros(df.shape[0]))
+    
+    df.loc[df[col1] > df[col2], new_col] = label1
+    df.loc[df[col2] > df[col1], new_col] = label2
+    
+    return df
