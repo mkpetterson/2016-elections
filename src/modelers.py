@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split, KFold
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 
 def standardize(X_train, X_test):
@@ -19,14 +19,35 @@ def standardize(X_train, X_test):
     np.array
     np.array
     """
-    scalar = StandardScaler()
-    scalar.fit(X_train)
+    scaler = StandardScaler()
+    scaler.fit(X_train)
     
     # Transform
-    X_train_new = scalar.transform(X_train)
-    X_test_new = scalar.transform(X_test)
+    X_train_new = scaler.transform(X_train)
+    X_test_new = scaler.transform(X_test)
     
     return X_train_new, X_test_new
+    
+    
+def normalize(X_train, X_test):
+    """Normalizing data
+    
+    Inputs
+    X_train: np.array
+    X_test: np.array
+    
+    Returns
+    np.array
+    np.array
+    """
+    
+    norm = MinMaxScaler()
+    norm.fit(X_train)
+    
+    X_trainn = norm.transform(X_train)
+    X_testn = norm.transform(X_test)
+    
+    return X_trainn, X_testn
     
     
 def lin_regression(X_train, X_test, y_train, y_test):

@@ -102,7 +102,7 @@ Linear regression was chosen for the initial model. Since we are looking at coun
 Removal of third party option from the regression model was done. Sigificant third party votes are often not predicted by information in the demographics table, but rather from other characteristics that can't be accounted for in this linear regression. We are assuming that a third party candidate will evently pull votes off the republican and democratic candidates, nullifying the overall affect. Thus, the prediction model will only predict for the percentage of vote for Trump and assume Clinton is 100-Trump. 
 
 
-
+KFold RMSE range from 3.06 - 3.68, with an average value of 3.36. 
 
 
 ## Prediction Results

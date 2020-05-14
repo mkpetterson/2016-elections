@@ -38,9 +38,9 @@ def make_histogram(df, ax, colname, idx, label, title):
     Returns: ax
     """
     
-    ax.hist(df[colname][idx], label=label, alpha=0.7, bins=30)
+    ax.hist(df[colname][idx], label=label, alpha=0.7, bins=30, density=True)
     ax.legend()
     ax.set_title(title)
-    ax.set_ylabel('Count')
+    ax.set_ylabel('Normalized Count')
     ax.set_xlabel(title)
     return ax
