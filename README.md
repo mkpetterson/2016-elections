@@ -8,7 +8,7 @@
 
 - <a href="https://github.com/mkpetterson/2016_elections#introduction">Introduction</a>  
 - <a href="https://github.com/mkpetterson/2016_elections#data-preparation-and-exploratory-data-analysis">Data Preparation and Exploratory Data Analysis</a> 
-- <a href="https://github.com/mkpetterson/2016_elections#modeling-linear-regression">Modeling</a>  
+- <a href="https://github.com/mkpetterson/2016_elections#modeling-linear-regression">Statistical Analysis</a>  
 - <a href="https://github.com/mkpetterson/2016_elections#prediction-results">Prediction Results</a> 
 - <a href="https://github.com/mkpetterson/2016_elections#conclusion">Conclusion</a>
 - <a href="https://github.com/mkpetterson/2016_elections#notes">Notes</a>
@@ -22,7 +22,7 @@ Predicting the winner of the election is no small task. While certian demographi
 
 The goal of this project is to predict the presidential election using only demographics for each county in the United States. While this model won't account for any of the complex factor listed above, it can still provide decent results and more complexity can be added to the resultant model. The data, taken from the <a href="https://electionlab.mit.edu/data">MIT Election Lab</a>, contains various information for each of the 3114 counties throughout the US. 
 
-<hr>
+
 
 
 ## Data Preparation and Exploratory Data Analysis
@@ -62,8 +62,10 @@ Working on the training set only, we did some EDA to look at the distribution of
 <h5><b>Candidate with the most votes</b></h5>
 <img alt='choropleth1' src='images/winner_2016.png'>
 
-<h5><b>Median Income</b></h5>
-<img alt='choropleth2' src='images/median_income.png'>
+
+The demographics in the different counties are highly varied. The screenshot below shows statistics from a few of the features in the dataset. 
+
+<img alt='describe' src='images/describe.png'>
 
 
 Below are a few other plots looking more closely at demographic data. Most are broken down into counties that voted majoriy-Trump or majority-Clinton. These plots highlight some interesting trends, namely that there isn't a large different along educational or income lines, with the exception that highly educated counties (>50% of the population has a college degree) voted almost exclusively for Clinton. One of the largest predictors appears to be whether or not the county previously voted for Romney or Obama.
@@ -86,7 +88,6 @@ The correlations plot, aside from showing features that are highly correlated an
 <img alt="edu" src='images/prev_election.png' width='600'>
 </details>
 
-<hr>
 
 
 ## Modeling: Linear Regression
@@ -138,7 +139,7 @@ Despite the simplicity of the model and the fact that some of the features were 
 
 Updated demographic information could be fed into the same model to accurately predict the 2020 election, although recent events and constituent sentiment would likely add value if it could be incorporated. 
 
-
+One of the most important features, both by p-value and by visual analysis of histograms, is how the county voted in previous elections. Republican voters tend to vote republican and democrat voters tend to vote for republicans. A county flipping parties, which happened in the 2016 elections, likely is caused by factors other than demographics. 
 
 ## Notes
 
