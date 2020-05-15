@@ -104,12 +104,6 @@ Linear regression was chosen for the initial model. Since we are looking at coun
 - Summing predicted votes for each county and tallying the difference in votes for each candidate
 
 
-A snippet of code: 
-
-<img alt='code' src='images/code.png' width='500'>
-
-
-
 <img alt="pvalues" src='images/pvalues.png' width='400'><img alt='beta' src='images/betas.png' width='400'>
 
 Most of the p-values are significant, which is a little surprising given some of the overlap seen in the histograms generated in the EDA section. Most notably, unemployment percent and the percent not finishing high school are significant in the model, but the histograms for Trump vs Clinton supporters are nearly identical. However, the beta values for these two are markedly smaller than the beta values for other significant variables. The lack of true independence between features could be the cause of p-values that seem to defy intuition. 
@@ -122,7 +116,29 @@ Feature engineering was investigated and found to be unnecessary due to the high
 - KFold R2 values ranged from 0.94 - 0.97, with an average value of 0.95.
 - The p-value of OLS model was 0.000, indicating that the linear regression model was able to accurately predict the percentage of votes Trump would receive in a given county based solely off demogrpahics and previous election results. 
 
-<b>We can conclude that the model performs well based on the performance metrics.</b>     
+
+
+<b>Model Performance with Feature Reduction</b>
+Using a scatter matrix as a guide, features that appeared to be highly correlated were iteratively removed to see the effect on the model. RMSE and R2 values are the average over 5 folds using KFold. 
+
+- 1st iteration: RMSE 3.36, R2 0.95 - Initial model
+- 2nd iteration: RMSE 3.32, R2 0.95
+- 3rd iteration: RMSE 3.36, R2 0.95
+
+
+Features in 2nd iteration:<br>
+As above, but removed 'obama12_pct'
+
+Features in 3rd iteration: <br>
+As above, but removed OHE features 'metro', 'rural', 'urban_metroadj', 'urban_not_metroadj'
+
+
+Below are the p-values and betas corresponding to iteration 3: the model using the fewest features. It's interesting to note that as certain features are removed, the p-values of the remaining features change to become slightly less important. Nonetheless, the performance of all 3 models is still quite good. 
+
+<img alt="pvalues" src='images/pvalues-data3.png' width='400'><img alt='beta' src='images/betas_data3.png' width='400'>
+
+
+<b>Overall, the model performs well based on the performance metrics.</b>     
 <br>    
 
 
@@ -133,13 +149,16 @@ Of the 778 counties in the test set, 97% of them were accurately predicted to ha
 <img alt='flipped' src='images/flipped.png'>
 
 
+Unfortuantely, updated demographic information is not yet available, so the predictions can't yet be extended to the 2020 elections. 
+
+
 ## Conclusion
 
 Despite the simplicity of the model and the fact that some of the features were correlated, the predictions were fairly accurate. Both the RMSE and R2 metrics were well within acceptable ranges and 97% of the 778 counties still predicted the same frontrunner. The discrepancy in votes between the predicted and true votes was only 110 across all 778 counties in the test set. 
 
 Updated demographic information could be fed into the same model to accurately predict the 2020 election, although recent events and constituent sentiment would likely add value if it could be incorporated. 
 
-One of the most important features, both by p-value and by visual analysis of histograms, is how the county voted in previous elections. Republican voters tend to vote republican and democrat voters tend to vote for republicans. A county flipping parties, which happened in the 2016 elections, likely is caused by factors other than demographics. 
+One of the most important features, both by p-value and by visual analysis of histograms, is how the county voted in previous elections. Republican voters tend to vote republican and democrat voters tend to vote for republicans. A county flipping parties, which happened in the 2016 elections, likely is caused by factors other than demographics. Scraping twitter feeds, facebook posts, or looking at media consumed might give better insights into the pulse of the public. 
 
 ## Notes
 
