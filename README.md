@@ -164,15 +164,30 @@ Feature Importances as found by Random Forest
 </details>
 
 
+<details>
+    <summary>Gradient Boosting Regression</summary>
+    <br>
+    
+Gradient Boosting Regressor takes advantage of adding many weak learning together with the aim to minimize variance and prevent overfitting. Feature importances are found by calculating the Gini importances. This model performed roughly the same as the Random Forest. 
+    
+<b>Model Performance</b><br>
+- KFold RMSE range from 2.63 - 3.80, with an average value of 3.05. 
+- KFold R2 values ranged from 0.94 - 0.97, with an average value of 0.96.  
+    
+Feature Importances as found by Random Forest
+<img alt='importances' src='images/featureimportGB-data3.png' width='400'>
 
+</details>
 
 
 ## Prediction Results
 
-Of the 778 counties in the test set, 97% of them were accurately predicted to have either Trump or Clinton as the forerunner. A choropleth map of the counties in the testing set is shown below, with blue representing accurate predictions, while yellow represents counties with a different predicted forerunner. 
+Of the 778 counties in the test set, 95-97% of them were accurately predicted by all models to have either Trump or Clinton as the forerunner. A choropleth map of the counties in the testing set is shown below, with blue representing accurate predictions, while yellow represents counties with a different predicted forerunner. 
 
-<img alt='flipped' src='images/flipped.png'>
-    <img alt='flipped' src='images/flipped_rf.png'>
+The top plot is from the linear regressor, while the bottom plot is for the gradient boosting regressor. They are similar, although have different predicted frontrunners for a few counties. 
+
+<img alt='flipped' src='images/flippedlr.png' width='800'>
+<img alt='flipped' src='images/flippedgb.png' width='800'>
 
 
 Unfortuantely, updated demographic information is not yet available, so the predictions can't yet be extended to the 2020 elections. 
