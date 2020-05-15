@@ -104,8 +104,9 @@ Regression was chosen for the initial model. Since we are looking at county-leve
 - Summing predicted votes for each county and tallying the difference in votes for each candidate
 
 <details>
-    <summary><h3>Linear Regression</h3></summary>
+    <summary>Linear Regression</summary>
     
+    <br>
 Most of the p-values are significant, which is a little surprising given some of the overlap seen in the histograms generated in the EDA section. Most notably, unemployment percent and the percent not finishing high school are significant in the model, but the histograms for Trump vs Clinton supporters are nearly identical. However, the beta values for these two are markedly smaller than the beta values for other significant variables. The lack of true independence between features could be the cause of p-values that seem to defy intuition. 
  
     
@@ -147,11 +148,24 @@ Below are the p-values and betas corresponding to iteration 3: the model using t
 </details>
 
 <details>
-    <summary><h3>Random Forest Regression</h3></summary>
+    <summary>Random Forest Regression</summary>
+    <br>
     
-    Random Forest is a bit more of a black box than linear regression. There are no coefficients 
+Random Forest is a bit more of a black box than linear regression. Feature importances are found by calculating the Gini importances. However, the model still performed as well, if not slightly better than linear regression. 
+
+<b>Model Performance</b><br>
+- KFold RMSE range from 2.86 - 3.35, with an average value of 3.15. 
+- KFold R2 values ranged from 0.95 - 0.97, with an average value of 0.96.
+  
+    
+Feature Importances as found by Random Forest
+<img alt='importances' src='images/featureimportRF-data3.png' width='400'>
 
 </details>
+
+
+
+
 
 ## Prediction Results
 
