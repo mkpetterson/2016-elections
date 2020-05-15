@@ -178,6 +178,11 @@ Feature Importances as found by Random Forest
 <img alt='importances' src='images/featureimportGB-data3.png' width='400'>
 
 </details>
+<br>
+
+The model performance can be summarized in the plot below.<br> 
+<img alt='performance' src='images/model_performance.png' width='800'>
+
 
 
 ## Prediction Results
