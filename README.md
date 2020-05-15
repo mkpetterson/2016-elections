@@ -90,24 +90,28 @@ The correlations plot, aside from showing features that are highly correlated an
 
 
 
-## Modeling: Linear Regression
+## Modeling: Linear Regression and Random Forest Regression
 
-Linear regression was chosen for the initial model. Since we are looking at county-level data and not state-level data, it makes more sense to do a linear regression to predict the percentage of votes each candidate receives, then multiply that by the voting population to get a total vote count for each county. All the counties in a given state are tallied and the majority winner wins the state. The process flow is as follows:
+Regression was chosen for the initial model. Since we are looking at county-level data and not state-level data, it makes more sense to do a regression to predict the percentage of votes each candidate receives, then multiply that by the voting population to get a total vote count for each county. All the counties in a given state are tallied and the majority winner wins the state. The process flow is as follows:
 
 
 - Removal of third party candidate <a href="https://www.google.com"><sup>1</sup></a>
 - Normalization of all dataset features <a href="https://www.google.com"><sup>2</sup></a>
-- KFold for iterative, randomized train/test splits 
-- Linear Regression for prediction of the percentage of a county who voted for Trump
+- KFold for iterative, randomized train/test splits (for linear regression)
+- Linear or Random Forest regression for prediction of the percentage of a county who voted for Trump
 - Error analysis using mean squared error and R2
 - Extraction of beta parameters and p-values to find most important/signifiant features
 - Summing predicted votes for each county and tallying the difference in votes for each candidate
 
-
-<img alt="pvalues" src='images/pvalues.png' width='400'><img alt='beta' src='images/betas.png' width='400'>
-
+<details>
+    <summary><h3>Linear Regression</h3></summary>
+    
 Most of the p-values are significant, which is a little surprising given some of the overlap seen in the histograms generated in the EDA section. Most notably, unemployment percent and the percent not finishing high school are significant in the model, but the histograms for Trump vs Clinton supporters are nearly identical. However, the beta values for these two are markedly smaller than the beta values for other significant variables. The lack of true independence between features could be the cause of p-values that seem to defy intuition. 
  
+    
+<img alt="pvalues" src='images/pvalues.png' width='400'><img alt='beta' src='images/betas.png' width='400'>
+
+
 Feature engineering was investigated and found to be unnecessary due to the high performance of the native features.
  
 
@@ -140,13 +144,21 @@ Below are the p-values and betas corresponding to iteration 3: the model using t
 
 <b>Overall, the model performs well based on the performance metrics.</b>     
 <br>    
+</details>
 
+<details>
+    <summary><h3>Random Forest Regression</h3></summary>
+    
+    Random Forest is a bit more of a black box than linear regression. There are no coefficients 
+
+</details>
 
 ## Prediction Results
 
 Of the 778 counties in the test set, 97% of them were accurately predicted to have either Trump or Clinton as the forerunner. A choropleth map of the counties in the testing set is shown below, with blue representing accurate predictions, while yellow represents counties with a different predicted forerunner. 
 
 <img alt='flipped' src='images/flipped.png'>
+    <img alt='flipped' src='images/flipped_rf.png'>
 
 
 Unfortuantely, updated demographic information is not yet available, so the predictions can't yet be extended to the 2020 elections. 
