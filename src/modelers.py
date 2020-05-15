@@ -6,6 +6,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.ensemble import RandomForestRegressor
 
 
 def standardize(X_train, X_test):
@@ -102,3 +103,23 @@ def kfold_scores(X_train, y_train, nsplits):
         
     return np.array(rmses), np.array(r_sq_errors), np.array(coeffs)
     
+
+def random_forest(X_train, X_test, y_train, y_test):
+    """ Random Forest Regressor
+    
+    Inputs:
+    X_train, X_test, y_train, y_test
+    np.array, np.array, np.array, np.array
+    
+    Returns:
+    rmse
+    model coefficients"""
+    
+    model = RandomForestRegressor()
+    model.fit(X_train, y_train)
+    
+    y_hat = model.predict(X_test)
+    rmse = np.sqrt(mean_squared_error(y_test, y_hat))
+    r_sq = model.score(X_test, y_test)
+    
+    return rmse, r_sq, y_hat
