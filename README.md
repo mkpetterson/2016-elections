@@ -50,6 +50,12 @@ The cleaned up dataset:
 <img alt="cleaned" src='images/cleaned_data.png'>
 
 
+A screenshot showing statistics from a few of the features in the dataset:
+
+<img alt='describe' src='images/describe.png'>
+
+<br>
+
 While state, county, and fips will not be used in the regression or classification model, they will be needed for some initial exploratory data analysis and will be dropped at a later time. 
 
 
@@ -62,10 +68,6 @@ Working on the training set only, we did some EDA to look at the distribution of
 <h5><b>Candidate with the most votes</b></h5>
 <img alt='choropleth1' src='images/winner_2016.png'>
 
-
-The demographics in the different counties are highly varied. The screenshot below shows statistics from a few of the features in the dataset. 
-
-<img alt='describe' src='images/describe.png'>
 
 
 Below are a few other plots looking more closely at demographic data. Most are broken down into counties that voted majoriy-Trump or majority-Clinton. These plots highlight some interesting trends, namely that there isn't a large different along educational or income lines, with the exception that highly educated counties (>50% of the population has a college degree) voted almost exclusively for Clinton. One of the largest predictors appears to be whether or not the county previously voted for Romney or Obama.
