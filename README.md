@@ -1,6 +1,10 @@
 # Predicting the Presidential Election
 ![badge](https://img.shields.io/badge/last%20modified-may%20%202020-success)
+<<<<<<< HEAD
 ![badge](https://img.shields.io/badge/status-done!-success)
+=======
+![badge](https://img.shields.io/badge/status-completed-success)
+>>>>>>> 31664ce069daa7252878998fdf144defd1b385fb
 
 <a href="https://github.com/mkpetterson">Maureen Petterson</a>
 
