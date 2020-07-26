@@ -170,13 +170,13 @@ Feature Importances as found by Random Forest
     <summary>Gradient Boosting Regression</summary>
     <br>
     
-Gradient Boosting Regressor takes advantage of adding many weak learning together with the aim to minimize variance and prevent overfitting. Feature importances are found by calculating the Gini importances. This model performed roughly the same as the Random Forest. 
+Gradient Boosting Regressor takes advantage of adding many weak learners together with the aim to minimize variance and prevent overfitting. This model is built iteratively and at each states a regression tree is fit to the negative gradient of the loss function (least squares in the case of regression). This model performed roughly the same as the Random Forest. 
     
 <b>Model Performance</b><br>
 - KFold RMSE range from 2.63 - 3.80, with an average value of 3.05. 
 - KFold R2 values ranged from 0.94 - 0.97, with an average value of 0.96.  
     
-Feature Importances as found by Random Forest
+Feature Importances as found by Gradient Boosted Regression
 <img alt='importances' src='images/featureimportGB-data3.png' width='400'>
 
 </details>
